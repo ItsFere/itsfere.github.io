@@ -144,7 +144,7 @@
 
         /* Кнопка с анимацией цвета текста под тон фона */
         .btn-projects {
-            background: #fff; /* Оставляем белую основу кнопки */
+            background: #fff;
             border: none;
             padding: 16px 35px;
             font-size: 18px;
@@ -154,8 +154,8 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             text-decoration: none;
-            /* Синхронная анимация цвета текста с анимацией body */
             animation: textColorMatch 10s ease-in-out infinite;
+            display: inline-block;
         }
 
         /* Анимация цвета текста кнопки, повторяющая цвета фона */
@@ -215,7 +215,7 @@
             border-color: rgba(255, 255, 255, 0.4);
         }
 
-        .project-card h3 { margin: 0 0 12px 0; font-size: 22px; }
+                .project-card h3 { margin: 0 0 12px 0; font-size: 22px; }
         .project-card p { margin: 0 0 20px 0; font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, 0.85); flex-grow: 1; }
         .project-link-label { font-weight: bold; font-size: 14px; display: flex; align-items: center; }
         .project-link-label::after { content: " →"; margin-left: 5px; transition: 0.2s; }
@@ -243,12 +243,12 @@
             </div>
             <a href="#portfolio" class="btn-projects" id="btn-projects">Мои проекты</a>
         </section>
-            <section id="portfolio" class="portfolio-section">
+        <section id="portfolio" class="portfolio-section">
             <h2 id="portfolio-title">Портфолио</h2>
             <div class="projects-grid">
 
                 <!-- Проект 1: Тренажер слов -->
-                <a href="https://itsfere.github.io/DeutschTrainer/" target="_blank" class="project-card">
+                <a href="https://github.io" target="_blank" class="project-card">
                     <div>
                         <h3 id="p1-title">Тренажер слов</h3>
                         <p id="p1-desc">Приложение для изучения немецких и русских слов, разработанное с удобным интерфейсом.</p>
@@ -257,12 +257,21 @@
                 </a>
 
                 <!-- Проект 2: Математический тренажер -->
-                <a href="https://itsfere.github.io/fraction-trainer/" target="_blank" class="project-card">
+                <a href="https://github.io" target="_blank" class="project-card">
                     <div>
                         <h3 id="p2-title">Математический тренажер</h3>
                         <p id="p2-desc">Математический инструмент для обучения работы с дробными числами.</p>
                     </div>
                     <span class="project-link-label" id="p2-link">Открыть проект</span>
+                </a>
+
+                <!-- Проект 3: Быстрый Флаг -->
+                <a href="https://github.io" target="_blank" class="project-card">
+                    <div>
+                        <h3 id="p3-title">Быстрый Флаг</h3>
+                        <p id="p3-desc">Угадай флаг страны за 5 секунд.</p>
+                    </div>
+                    <span class="project-link-label" id="p3-link">Открыть проект</span>
                 </a>
 
             </div>
@@ -274,17 +283,20 @@
             ru: {
                 logo: "ItsFere", projectsBtn: "Мои проекты", portfolioTitle: "Портфолио",
                 p1Title: "Тренажер слов", p1Desc: "Приложение для изучения немецких и русских слов, разработанное с удобным интерфейсом.", p1Link: "Открыть проект",
-                p2Title: "Математический тренажер", p2Desc: "Математический инструмент для обучения работы с дробными числами.", p2Link: "Открыть проект"
+                p2Title: "Математический тренажер", p2Desc: "Математический инструмент для обучения работы с дробными числами.", p2Link: "Открыть проект",
+                p3Title: "Быстрый Флаг", p3Desc: "Угадай флаг страны за 5 секунд.", p3Link: "Открыть проект"
             },
             en: {
                 logo: "ItsFere", projectsBtn: "My Projects", portfolioTitle: "Portfolio",
                 p1Title: "Vocabulary Trainer", p1Desc: "An application designed for learning German and Russian words with a user-friendly interface.", p1Link: "Open Project",
-                p2Title: "Math Trainer", p2Desc: "A mathematical tool for practice and calculation of fractional numbers.", p2Link: "Open Project"
+                p2Title: "Math Trainer", p2Desc: "A mathematical tool for practice and calculation of fractional numbers.", p2Link: "Open Project",
+                p3Title: "Fast Flag", p3Desc: "Guess the country's flag in 5 seconds.", p3Link: "Open Project"
             },
             de: {
                 logo: "ItsFere", projectsBtn: "Meine Projekte", portfolioTitle: "Portfolio",
-                p1Title: "Vokabeltrainer", p1Desc: "Eine application zum Lernen von deutschen und russischen Wörtern mit einer komfortablen Benutzeroberfläche.", p1Link: "Projekt öffnen",
-                p2Title: "Mathe-Trainer", p2Desc: "Ein mathematisches Werkzeug zum Üben und Berechnen von Bruchnummern.", p2Link: "Projekt öffnen"
+                p1Title: "Vokabeltrainer", p1Desc: "Eine Anwendung zum Lernen von deutschen und russischen Wörtern mit einer komfortablen Benutzeroberfläche.", p1Link: "Projekt öffnen",
+                p2Title: "Mathe-Trainer", p2Desc: "Ein mathematisches Werkzeug zum Üben и Berechnen von Bruchnummern.", p2Link: "Projekt öffnen",
+                p3Title: "Schnelle Flagge", p3Desc: "Errate die Flagge des Landes in 5 Sekunden.", p3Link: "Projekt öffnen"
             }
         };
 
@@ -297,12 +309,18 @@
             updateText('site-logo', translations[lang].logo);
             updateText('btn-projects', translations[lang].projectsBtn);
             updateText('portfolio-title', translations[lang].portfolioTitle);
+            
             updateText('p1-title', translations[lang].p1Title);
             updateText('p1-desc', translations[lang].p1Desc);
             updateText('p1-link', translations[lang].p1Link);
+            
             updateText('p2-title', translations[lang].p2Title);
             updateText('p2-desc', translations[lang].p2Desc);
             updateText('p2-link', translations[lang].p2Link);
+
+            updateText('p3-title', translations[lang].p3Title);
+            updateText('p3-desc', translations[lang].p3Desc);
+            updateText('p3-link', translations[lang].p3Link);
 
             document.querySelectorAll('.lang-select button').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById('btn-' + lang);

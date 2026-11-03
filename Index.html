@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ItsFere</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 200vh;
+            background-image: url('fon.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            animation: solidColorBg 10s ease-in-out infinite;
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        /* Анимация изменения цвета фона всего экрана */
+        @keyframes solidColorBg {
+            0%, 100% { background-color: #0F95F0; }
+            50% { background-color: #00d2ff; }
+        }
+
+        .settings-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .btn-settings {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.3s;
+            width: 45px;
+            height: 45px;
+            box-sizing: border-box;
+        }
+
+        .btn-settings svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .btn-settings:hover svg { transform: rotate(360deg); }
+        .btn-settings:hover { background: rgba(255, 255, 255, 0.25); }
+
+        .lang-select {
+            display: flex;
+            gap: 5px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 5px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .settings-container:hover .lang-select {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .lang-select button {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .lang-select button:hover, .lang-select button.active {
+            background: #fff;
+            color: #0066eb;
+            border-color: #fff;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-center-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .logo-avatar {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logo-text {
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Кнопка с анимацией цвета текста под тон фона */
+        .btn-projects {
+            background: #fff; /* Оставляем белую основу кнопки */
+            border: none;
+            padding: 16px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            /* Синхронная анимация цвета текста с анимацией body */
+            animation: textColorMatch 10s ease-in-out infinite;
+        }
+
+        /* Анимация цвета текста кнопки, повторяющая цвета фона */
+        @keyframes textColorMatch {
+            0%, 100% { color: #0F95F0; }
+            50% { color: #00d2ff; }
+        }
+
+        .btn-projects:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .portfolio-section {
+            min-height: 100vh;
+            padding: 120px 50px 80px 50px;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .portfolio-section h2 {
+            font-size: 36px;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 10px;
+            display: inline-block;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .project-card h3 { margin: 0 0 12px 0; font-size: 22px; }
+        .project-card p { margin: 0 0 20px 0; font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, 0.85); flex-grow: 1; }
+        .project-link-label { font-weight: bold; font-size: 14px; display: flex; align-items: center; }
+        .project-link-label::after { content: " →"; margin-left: 5px; transition: 0.2s; }
+        .project-card:hover .project-link-label::after { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <button class="btn-settings" title="Настройки / Settings">
+            <svg viewBox="0 0 24 24">
+                <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2 3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+            </svg>
+        </button>
+        <div class="lang-select">
+            <button onclick="changeLanguage('ru')" id="btn-ru" class="active">Ru</button>
+            <button onclick="changeLanguage('en')" id="btn-en">En</button>
+            <button onclick="changeLanguage('de')" id="btn-de">De</button>
+        </div>
+    </div>
+    <main>
+        <section class="hero">
+            <div class="logo-center-wrapper">
+                <img src="logo.svg" class="logo-avatar" alt="ItsFere Logo">
+                <h1 class="logo-text" id="site-logo">ItsFere</h1>
+            </div>
+            <a href="#portfolio" class="btn-projects" id="btn-projects">Мои проекты</a>
+        </section>
+            <section id="portfolio" class="portfolio-section">
+            <h2 id="portfolio-title">Портфолио</h2>
+            <div class="projects-grid">
+
+                <!-- Проект 1: Тренажер слов -->
+                <a href="https://itsfere.github.io/DeutschTrainer/" target="_blank" class="project-card">
+                    <div>
+                        <h3 id="p1-title">Тренажер слов</h3>
+                        <p id="p1-desc">Приложение для изучения немецких и русских слов, разработанное с удобным интерфейсом.</p>
+                    </div>
+                    <span class="project-link-label" id="p1-link">Открыть проект</span>
+                </a>
+
+                <!-- Проект 2: Математический тренажер -->
+                <a href="https://itsfere.github.io/fraction-trainer/" target="_blank" class="project-card">
+                    <div>
+                        <h3 id="p2-title">Математический тренажер</h3>
+                        <p id="p2-desc">Математический инструмент для обучения работы с дробными числами.</p>
+                    </div>
+                    <span class="project-link-label" id="p2-link">Открыть проект</span>
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const translations = {
+            ru: {
+                logo: "ItsFere", projectsBtn: "Мои проекты", portfolioTitle: "Портфолио",
+                p1Title: "Тренажер слов", p1Desc: "Приложение для изучения немецких и русских слов, разработанное с удобным интерфейсом.", p1Link: "Открыть проект",
+                p2Title: "Математический тренажер", p2Desc: "Математический инструмент для обучения работы с дробными числами.", p2Link: "Открыть проект"
+            },
+            en: {
+                logo: "ItsFere", projectsBtn: "My Projects", portfolioTitle: "Portfolio",
+                p1Title: "Vocabulary Trainer", p1Desc: "An application designed for learning German and Russian words with a user-friendly interface.", p1Link: "Open Project",
+                p2Title: "Math Trainer", p2Desc: "A mathematical tool for practice and calculation of fractional numbers.", p2Link: "Open Project"
+            },
+            de: {
+                logo: "ItsFere", projectsBtn: "Meine Projekte", portfolioTitle: "Portfolio",
+                p1Title: "Vokabeltrainer", p1Desc: "Eine application zum Lernen von deutschen und russischen Wörtern mit einer komfortablen Benutzeroberfläche.", p1Link: "Projekt öffnen",
+                p2Title: "Mathe-Trainer", p2Desc: "Ein mathematisches Werkzeug zum Üben und Berechnen von Bruchnummern.", p2Link: "Projekt öffnen"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const updateText = (id, text) => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = text;
+            };
+
+            updateText('site-logo', translations[lang].logo);
+            updateText('btn-projects', translations[lang].projectsBtn);
+            updateText('portfolio-title', translations[lang].portfolioTitle);
+            updateText('p1-title', translations[lang].p1Title);
+            updateText('p1-desc', translations[lang].p1Desc);
+            updateText('p1-link', translations[lang].p1Link);
+            updateText('p2-title', translations[lang].p2Title);
+            updateText('p2-desc', translations[lang].p2Desc);
+            updateText('p2-link', translations[lang].p2Link);
+
+            document.querySelectorAll('.lang-select button').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('btn-' + lang);
+            if (activeBtn) activeBtn.classList.add('active');
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>

@@ -217,6 +217,25 @@
         .project-link-label { font-weight: bold; font-size: 14px; display: flex; align-items: center; }
         .project-link-label::after { content: " →"; margin-left: 5px; transition: 0.2s; }
         .project-card:hover .project-link-label::after { transform: translateX(5px); }
+
+        /* Явная кнопка «Скачать» для FereStruct */
+        .btn-download {
+            display: inline-block;
+            background: #fff;
+            color: #0F95F0;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: auto;
+            text-decoration: none;
+        }
+        .btn-download:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -280,6 +299,18 @@
                     <span class="project-link-label" id="p4-link">Открыть проект</span>
                 </a>
 
+                <!-- Проект 5: FereStruct -->
+                <div class="project-card" style="cursor: default;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <img src="logo.svg" alt="FereStruct Icon" style="width: 48px; height: 48px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+                        <h3 id="p5-title" style="margin: 0;">FereStruct</h3>
+                    </div>
+                    <p id="p5-desc" style="margin-top: 0;">Десктопное приложение для создания структуры проектов в один клик. Тёмная/светлая темы, живой предпросмотр и переименование файлов.</p>
+                    
+                    <!-- Кнопка скачивания -->
+                    <a href="https://github.com/itsfere/FereStruct/releases" target="_blank" class="btn-download" id="p5-link">Скачать приложение</a>
+                </div>
+
             </div>
         </section>
     </main>
@@ -291,21 +322,24 @@
                 p1Title: "Тренажер слов", p1Desc: "Приложение для изучения немецких и русских слов, разработанное с удобным интерфейсом.", p1Link: "Открыть проект",
                 p2Title: "Математический тренажер", p2Desc: "Математический инструмент для обучения работы с дробными числами.", p2Link: "Открыть проект",
                 p3Title: "Быстрый Флаг", p3Desc: "Угадай флаг страны за 5 секунд.", p3Link: "Открыть проект",
-                p4Title: "Квадратный Вайб", p4Desc: "Проходите уровни с уникальными механиками и способностями, попробуйте пройти хотя-бы 15.", p4Link: "Открыть проект"
+                p4Title: "Квадратный Вайб", p4Desc: "Проходите уровни с уникальными механиками и способностями, попробуйте пройти хотя-бы 15.", p4Link: "Открыть проект",
+                p5Title: "FereStruct", p5Desc: "Десктопное приложение для создания структуры проектов в один клик. Тёмная/светлая темы, живой предпросмотр и переименование файлов.", p5Link: "Скачать приложение"
             },
             en: {
                 logo: "ItsFere", projectsBtn: "My Projects", portfolioTitle: "Portfolio",
                 p1Title: "Vocabulary Trainer", p1Desc: "An application designed for learning German and Russian words with a user-friendly interface.", p1Link: "Open Project",
                 p2Title: "Math Trainer", p2Desc: "A mathematical tool for practice and calculation of fractional numbers.", p2Link: "Open Project",
                 p3Title: "Fast Flag", p3Desc: "Guess the country's flag in 5 seconds.", p3Link: "Open Project",
-                p4Title: "Square Vibe", p4Desc: "Beat levels with unique mechanics and abilities, try to pass at least 15.", p4Link: "Open Project"
+                p4Title: "Square Vibe", p4Desc: "Beat levels with unique mechanics and abilities, try to pass at least 15.", p4Link: "Open Project",
+                p5Title: "FereStruct", p5Desc: "A desktop application for creating project structures in one click. Dark/light themes, live preview, and file renaming.", p5Link: "Download App"
             },
             de: {
                 logo: "ItsFere", projectsBtn: "Meine Projekte", portfolioTitle: "Portfolio",
                 p1Title: "Vokabeltrainer", p1Desc: "Eine Anwendung zum Lernen von deutschen und russischen Wörtern mit einer komfortablen Benutzeroberfläche.", p1Link: "Projekt öffnen",
                 p2Title: "Mathe-Trainer", p2Desc: "Ein mathematisches Werkzeug zum Üben und Berechnen von Bruchnummern.", p2Link: "Projekt öffnen",
                 p3Title: "Schnelle Flagge", p3Desc: "Errate die Flagge des Landes in 5 Sekunden.", p3Link: "Projekt öffnen",
-                p4Title: "Square Vibe", p4Desc: "Meistere Level mit einzigartigen Mechaniken und Fähigkeiten, versuche mindestens 15 zu schaffen.", p4Link: "Projekt öffnen"
+                p4Title: "Square Vibe", p4Desc: "Meistere Level mit einzigartigen Mechaniken und Fähigkeiten, versuche mindestens 15 zu schaffen.", p4Link: "Projekt öffnen",
+                p5Title: "FereStruct", p5Desc: "Eine Desktop-Anwendung zur Erstellung von Projektstrukturen mit einem Klick. Dunkle/helle Themes, Live-Vorschau und Dateiumbenennung.", p5Link: "App herunterladen"
             }
         };
 
@@ -334,6 +368,10 @@
             updateText('p4-title', translations[lang].p4Title);
             updateText('p4-desc', translations[lang].p4Desc);
             updateText('p4-link', translations[lang].p4Link);
+
+            updateText('p5-title', translations[lang].p5Title);
+            updateText('p5-desc', translations[lang].p5Desc);
+            updateText('p5-link', translations[lang].p5Link);
 
             document.querySelectorAll('.lang-select button').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById('btn-' + lang);
